@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Google Form Data Extractor",
+  "version": "1.0.0",
+  "description": "Extracts Google Form submitted data and sends to API",
+  "permissions": ["activeTab"],
+  "host_permissions": [
+    "https://docs.google.com/*",
+    "http://localhost:4000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://docs.google.com/forms/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
