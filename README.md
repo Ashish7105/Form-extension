@@ -13,7 +13,6 @@ A small browser extension with a Node.js + Express backend that stores incoming 
 
 - `backend/` — Node.js Express API and Mongoose models
 - `extension/` — browser extension source (manifest, background/content scripts)
-- `test.html` — simple test page to exercise the extension
 
 ## Backend: install and run
 
@@ -57,11 +56,14 @@ The API will listen on http://localhost:4000 by default and exposes a POST endpo
 
 The extension will load and run its background and content scripts. See `extension/manifest.json`, `extension/background.js`, and `extension/content.js` for implementation details.
 
-## Quick test
+## Quick test (Google Forms)
 
 1. Start the backend (`backend` folder) as above.
 2. Load the extension in your browser (see previous section).
-3. Open `test.html` in the browser (double-click or serve it) and interact with the page to trigger the extension/content script. The extension should send data to the backend's `POST /api/form-events` endpoint, and you should see console logs in the backend and saved documents in MongoDB.
+3. Open a Google Form (a form hosted on https://docs.google.com/forms/) and fill it out.
+4. Submit the Google Form — the extension captures the form inputs and sends them to the backend's `POST /api/form-events` endpoint. You should see console logs in the backend and saved documents in MongoDB.
+
+Note: This extension is designed to extract submitted data from Google Forms only. It does not capture or store data from regular HTML forms such as `test.html`.
 
 ## Development notes
 
